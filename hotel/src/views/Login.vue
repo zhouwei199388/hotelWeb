@@ -51,19 +51,19 @@
             this.logining = true;
             //NProgress.start();
             // var loginParams = { username: this.ruleForm2.account, password: this.ruleForm2.checkPass };
-            var loginParams = { username: this.ruleForm2.account, password: this.ruleForm2.checkPass };
+            var loginParams = { user: this.ruleForm2.account, password: this.ruleForm2.checkPass };
             requestLogin(loginParams).then(data => {
               this.logining = false;
               console.log(data);
               //NProgress.done();
-              let { msg, code, user } = data;
-              if (code !== 200) {
+              // let { msg, code, admin } = data;
+              if (data.header.code !== 0) {
                 this.$message({
-                  message: msg,
+                  message: data.header.msg,
                   type: 'error'
                 });
               } else {
-                sessionStorage.setItem('user', JSON.stringify(user));
+                sessionStorage.setItem('user', JSON.stringify(data.admin));
                 this.$router.push({ path: '/table' });
               }
             });
