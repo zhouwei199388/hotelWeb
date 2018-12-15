@@ -16,12 +16,12 @@
 		</el-col>
 
 		<!--列表-->
-		<el-table :data="hotels" highlight-current-row v-loading="listLoading" border @selection-change="selsChange" style="width: 100%;">
+		<el-table @row-click="onitemClick"  :data="hotels" highlight-current-row v-loading="listLoading" border @selection-change="selsChange" style="width: 100%;">
 			<el-table-column type="selection" width="55">
 			</el-table-column>
 			<el-table-column type="index" width="60">
 			</el-table-column>
-			<el-table-column prop="hotelname" label="酒店名" min-width="100" sortable>
+			<el-table-column prop="hotelname" cell-click="" label="酒店名" min-width="100" sortable>
 			</el-table-column>
 			<el-table-column prop="hoteladdress" label="地址" min-width="100">
 			</el-table-column>
@@ -160,6 +160,10 @@
 			// formatSex: function (row, column) {
 			// 	return row.sex == 1 ? '男' : row.sex == 0 ? '女' : '未知';
 			// },
+
+			onitemClick(){
+			  console.log("onitemclick");
+			},
 			handleCurrentChange(val) {
 				this.page = val;
 				this.getHotel();
