@@ -16,7 +16,7 @@
 		</el-col>
 
 		<!--列表-->
-		<el-table @row-click="onitemClick"  :data="hotels" highlight-current-row v-loading="listLoading" border @selection-change="selsChange" style="width: 100%;">
+		<el-table @row-click="onItemClick"  :data="hotels" highlight-current-row v-loading="listLoading" border @selection-change="selsChange" style="width: 100%;">
 			<el-table-column type="selection" width="55">
 			</el-table-column>
 			<el-table-column type="index" width="60">
@@ -160,187 +160,191 @@
 			// formatSex: function (row, column) {
 			// 	return row.sex == 1 ? '男' : row.sex == 0 ? '女' : '未知';
 			// },
+			onItemClick(e){
+                this.$router.push({
+					path: '/roomList',
+                    query: {
+                        id: e.id,
+                    }
+                });
+    },
+    handleCurrentChange(val) {
+        this.page = val;
+        this.getHotel();
+    },
 
-			onitemClick(){
-			  console.log("onitemclick");
-			},
-			handleCurrentChange(val) {
-				this.page = val;
-				this.getHotel();
-			},
+    getHotel(){
+        this.listLoading = true;
+        //NProgress.start();
+        getHotelList().then((res) => {
+            // this.total = res.data.total;
+            console.log(res);
+            this.hotels = res.hotelInfos;
+            this.listLoading = false;
+            //NProgress.done();
+        }).catch((e)=>{
+            this.listLoading = false;
+        });
+    },
 
-			getHotel(){
-                this.listLoading = true;
-                //NProgress.start();
-                getHotelList().then((res) => {
-                    // this.total = res.data.total;
-					console.log(res);
-                    this.hotels = res.hotelInfos;
-                    this.listLoading = false;
-                    //NProgress.done();
-                }).catch((e)=>{
-                    this.listLoading = false;
-				});
-			},
+    // //获取用户列表
+    // getUsers() {
+    // 	let para = {
+    // 		page: this.page,
+    // 		name: this.filters.name
+    // 	};
+    // 	this.listLoading = true;
+    // 	//NProgress.start();
+    // 	getUserListPage(para).then((res) => {
+    // 		this.total = res.data.total;
+    // 		this.users = res.data.users;
+    // 		this.listLoading = false;
+    // 		//NProgress.done();
+    // 	});
+    // },
+    //删除
+    handleDel: function (index, row) {
+        this.$confirm('确认删除该记录吗?', '提示', {
+            type: 'warning'
+        }).then(() => {
+            this.listLoading = true;
+            //NProgress.start();
+            let para = { id: row.id };
+            deleteHotel(row.id).then((res) => {
+                this.listLoading = false;
+                console.log(res);
+                //NProgress.done();
+                this.$message({
+                    message: '删除成功',
+                    type: 'success'
+                });
+                this.getHotel();
+            });
+        }).catch(() => {
 
-			// //获取用户列表
-			// getUsers() {
-			// 	let para = {
-			// 		page: this.page,
-			// 		name: this.filters.name
-			// 	};
-			// 	this.listLoading = true;
-			// 	//NProgress.start();
-			// 	getUserListPage(para).then((res) => {
-			// 		this.total = res.data.total;
-			// 		this.users = res.data.users;
-			// 		this.listLoading = false;
-			// 		//NProgress.done();
-			// 	});
-			// },
-			//删除
-			handleDel: function (index, row) {
-				this.$confirm('确认删除该记录吗?', '提示', {
-					type: 'warning'
-				}).then(() => {
-					this.listLoading = true;
-					//NProgress.start();
-					let para = { id: row.id };
-					deleteHotel(row.id).then((res) => {
-						this.listLoading = false;
-						console.log(res);
-						//NProgress.done();
-						this.$message({
-							message: '删除成功',
-							type: 'success'
-						});
-						this.getHotel();
-					});
-				}).catch(() => {
+        });
+    },
+    //显示编辑界面
+    handleEdit: function (index, row) {
+        console.log(row);
+        this.editFormVisible = true;
+        this.editForm = Object.assign({}, row);
+        console.log(this.editForm);
+    },
+    //显示新增界面
+    handleAdd: function () {
+        this.addFormVisible = true;
+        // this.addForm = {
+        // 	name: '',
+        // 	sex: -1,
+        // 	age: 0,
+        // 	birth: '',
+        // 	addr: ''
+        // };
+    },
+    //编辑
+    editSubmit: function () {
+        this.$refs.editForm.validate((valid) => {
+            if (valid) {
+                this.$confirm('确认提交吗？', '提示', {}).then(() => {
+                    this.editLoading = true;
+                    //NProgress.start();
+                    let para = Object.assign({}, this.editForm);
 
-				});
-			},
-			//显示编辑界面
-			handleEdit: function (index, row) {
-                console.log(row);
-				this.editFormVisible = true;
-				this.editForm = Object.assign({}, row);
-                console.log(this.editForm);
-			},
-			//显示新增界面
-			handleAdd: function () {
-				this.addFormVisible = true;
-				// this.addForm = {
-				// 	name: '',
-				// 	sex: -1,
-				// 	age: 0,
-				// 	birth: '',
-				// 	addr: ''
-				// };
-			},
-			//编辑
-			editSubmit: function () {
-				this.$refs.editForm.validate((valid) => {
-					if (valid) {
-						this.$confirm('确认提交吗？', '提示', {}).then(() => {
-							this.editLoading = true;
-							//NProgress.start();
-							let para = Object.assign({}, this.editForm);
+                      updateHotel(para).then((res) =>{
+                          this.editLoading = false;
+                          //NProgress.done();
+                          let  message = res.code===0?'提交成功':'提交失败';
+                          this.$message({
+                              message: message,
+                              type: 'success'
+                          });
+                          this.$refs['editForm'].resetFields();
+                          this.editFormVisible = false;
+                          this.getHotel();
+                      })
+                    // editUser(para).then((res) => {
+                    // 	this.editLoading = false;
+                    // 	//NProgress.done();
+                    // 	this.$message({
+                    // 		message: '提交成功',
+                    // 		type: 'success'
+                    // 	});
+                    // 	this.$refs['editForm'].resetFields();
+                    // 	this.editFormVisible = false;
+                    // 	this.getHotel();
+                    // });
+                });
+            }
+        });
+    },
+    //新增
+    addSubmit: function () {
+        this.$refs.addForm.validate((valid) => {
+            if (valid) {
+                this.$confirm('确认提交吗？', '提示', {}).then(() => {
+                    this.addLoading = true;
+                    console.log(this.addForm);
+                    addHotelInfo(this.addForm).then((res)=>{
+                        this.addLoading = false;
+                        console.log(res);
+                        //NProgress.done();
+                        if(res.code===0){
+                            this.$message({
+                                message: '提交成功',
+                                type: 'success'
+                            });
+                            this.$refs['addForm'].resetFields();
+                        }
+                        this.addFormVisible = false;
+                        this.getHotel();
+                    })
+                    // para.birth = (!para.birth || para.birth == '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
+                    // addUser(para).then((res) => {
+                    // 	this.addLoading = false;
+                    // 	//NProgress.done();
+                    // 	this.$message({
+                    // 		message: '提交成功',
+                    // 		type: 'success'
+                    // 	});
+                    // 	this.$refs['addForm'].resetFields();
+                    // 	this.addFormVisible = false;
+                    // 	this.getUsers();
+                    // });
+                });
+            }
+        });
+    },
+    selsChange: function (sels) {
+        this.sels = sels;
+    },
+    //批量删除
+    batchRemove: function () {
+        var ids = this.sels.map(item => item.id).toString();
+        this.$confirm('确认删除选中记录吗？', '提示', {
+            type: 'warning'
+        }).then(() => {
+            this.listLoading = true;
+            //NProgress.start();
+            let para = { ids: ids };
+            batchRemoveUser(para).then((res) => {
+                this.listLoading = false;
+                //NProgress.done();
+                this.$message({
+                    message: '删除成功',
+                    type: 'success'
+                });
+                this.getHotel();
+            });
+        }).catch(() => {
 
-                              updateHotel(para).then((res) =>{
-                                  this.editLoading = false;
-                                  //NProgress.done();
-								  let  message = res.code===0?'提交成功':'提交失败';
-                                  this.$message({
-                                      message: message,
-                                      type: 'success'
-                                  });
-                                  this.$refs['editForm'].resetFields();
-                                  this.editFormVisible = false;
-                                  this.getHotel();
-							  })
-							// editUser(para).then((res) => {
-							// 	this.editLoading = false;
-							// 	//NProgress.done();
-							// 	this.$message({
-							// 		message: '提交成功',
-							// 		type: 'success'
-							// 	});
-							// 	this.$refs['editForm'].resetFields();
-							// 	this.editFormVisible = false;
-							// 	this.getHotel();
-							// });
-						});
-					}
-				});
-			},
-			//新增
-			addSubmit: function () {
-				this.$refs.addForm.validate((valid) => {
-					if (valid) {
-						this.$confirm('确认提交吗？', '提示', {}).then(() => {
-							this.addLoading = true;
-							console.log(this.addForm);
-							addHotelInfo(this.addForm).then((res)=>{
-                                this.addLoading = false;
-                                console.log(res);
-                                //NProgress.done();
-								if(res.code===0){
-                                    this.$message({
-                                        message: '提交成功',
-                                        type: 'success'
-                                    });
-                                    this.$refs['addForm'].resetFields();
-								}
-                                this.addFormVisible = false;
-                                this.getHotel();
-							})
-							// para.birth = (!para.birth || para.birth == '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
-							// addUser(para).then((res) => {
-							// 	this.addLoading = false;
-							// 	//NProgress.done();
-							// 	this.$message({
-							// 		message: '提交成功',
-							// 		type: 'success'
-							// 	});
-							// 	this.$refs['addForm'].resetFields();
-							// 	this.addFormVisible = false;
-							// 	this.getUsers();
-							// });
-						});
-					}
-				});
-			},
-			selsChange: function (sels) {
-				this.sels = sels;
-			},
-			//批量删除
-			batchRemove: function () {
-				var ids = this.sels.map(item => item.id).toString();
-				this.$confirm('确认删除选中记录吗？', '提示', {
-					type: 'warning'
-				}).then(() => {
-					this.listLoading = true;
-					//NProgress.start();
-					let para = { ids: ids };
-					batchRemoveUser(para).then((res) => {
-						this.listLoading = false;
-						//NProgress.done();
-						this.$message({
-							message: '删除成功',
-							type: 'success'
-						});
-						this.getHotel();
-					});
-				}).catch(() => {
-
-				});
-			}
-		},
-		mounted() {
-			this.getHotel();
-		}
-	}
+        });
+    }
+},
+mounted() {
+    this.getHotel();
+}
+}
 
 </script>
 

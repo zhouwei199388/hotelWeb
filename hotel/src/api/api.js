@@ -23,6 +23,23 @@ export const deleteHotel = params => {
     return axios.post(`${base}/hotelInfo/delete?id=`+params).then(res=>res.data);
 };
 
+export const getRoomList = params => {
+    return axios.get(`${base}/room/getAllRoom?hotelId=`+params).then(res => res.data);
+};
+
+export const addRoom = params => {
+    return axios.post(`${base}/room/add`, params).then(res => res.data);
+};
+export const updateRoom = params => {
+    return axios.post(`${base}/room/update`, params).then(res => res.data);
+};
+
+export const deleteRoom = params => {
+    return axios.post(`${base}/room/delete?roomId=`+params).then(res=>res.data);
+};
+
+
+
 export const getUserList = params => {
     return axios.get(`${base}/user/getAllUser`).then(res=>res.data);
 };

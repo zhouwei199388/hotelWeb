@@ -43,18 +43,20 @@
 				},
 				loading: false,
 				users: [
-				]
+				],
+
 			}
 		},
 		methods: {
-			//性别显示转换
+
+            //性别显示转换
 			formatSex: function (row, column) {
 				return row.sex == 1 ? '男' : row.sex == 0 ? '女' : '未知';
 			},
 			//获取用户列表
 			getUser: function () {
 				let para = {
-					name: this.filters.name
+					id: this.hotelId
 				};
 				this.loading = true;
 				//NProgress.start();
@@ -65,6 +67,7 @@
 				});
 			}
 		},
+
 		mounted() {
 			this.getUser();
 		}

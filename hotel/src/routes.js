@@ -9,6 +9,7 @@ import Page4 from './views/nav2/Page4.vue'
 import Page5 from './views/nav2/Page5.vue'
 import Page6 from './views/nav3/Page6.vue'
 import echarts from './views/charts/echarts.vue'
+import RoomList from './views/nav1/RoomList'
 
 let routes = [
     {
@@ -23,6 +24,7 @@ let routes = [
         name: '',
         hidden: true
     },
+
     // {
     //     path: '/main',
     //     component: Main,
@@ -35,6 +37,7 @@ let routes = [
         iconCls: 'el-icon-message',//图标样式class
         children: [
             {path: '/main', component: Main, name: '主页', hidden: true},
+            {path: '/roomList', component: RoomList, name: '主页', hidden: true},
             {path: '/table', component: Table, name: '酒店列表'},
             {path: '/form', component: Form, name: '暂定活动'},
             {path: '/user', component: user, name: '用户列表'},
