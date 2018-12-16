@@ -53,12 +53,13 @@
             // var loginParams = { username: this.ruleForm2.account, password: this.ruleForm2.checkPass };
             var loginParams = { user: this.ruleForm2.account, password: this.ruleForm2.checkPass };
             requestLogin(loginParams).then(data => {
-              this.logining = false;
               console.log(data);
               //NProgress.done();
+                this.logining = false;
               // let { msg, code, admin } = data;
-              if (data.header.code !== 0) {
-                this.$message({
+              if (data.code=== 0) {
+
+                  this.$message({
                   message: data.header.msg,
                   type: 'error'
                 });
@@ -66,6 +67,12 @@
                 sessionStorage.setItem('user', JSON.stringify(data.admin));
                 this.$router.push({ path: '/table' });
               }
+            }).catch(e=>{
+                this.$message({
+                    message: "登录失败",
+                    type: 'error'
+                });
+                this.logining = false;
             });
           } else {
             console.log('error submit!!');

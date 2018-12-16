@@ -14,19 +14,19 @@
 
 		<!--列表-->
 		<template>
-			<el-table :data="users" highlight-current-row v-loading="loading" style="width: 100%;">
+			<el-table :data="users" highlight-current-row v-loading="loading" border style="width: 100%;">
 				<el-table-column type="index" width="60">
 				</el-table-column>
-				<el-table-column prop="name" label="姓名" width="120" sortable>
+				<el-table-column prop="nickname" label="姓名" min-width="100" sortable>
 				</el-table-column>
-				<el-table-column prop="sex" label="性别" width="100" :formatter="formatSex" sortable>
+				<el-table-column prop="phone" label="手机号" min-width="100" >
 				</el-table-column>
-				<el-table-column prop="age" label="年龄" width="100" sortable>
+				<el-table-column prop="gender" label="性别" min-width="100" :formatter="formatSex" >
 				</el-table-column>
-				<el-table-column prop="birth" label="生日" width="120" sortable>
+				<el-table-column prop="level" label="等级" min-width="100" sortable>
 				</el-table-column>
-				<el-table-column prop="addr" label="地址" min-width="180" sortable>
-				</el-table-column>
+				<!--<el-table-column prop="birth" label="生日" width="120" >-->
+				<!--</el-table-column>-->
 			</el-table>
 		</template>
 
@@ -51,19 +51,23 @@
 
             //性别显示转换
 			formatSex: function (row, column) {
-				return row.sex == 1 ? '男' : row.sex == 0 ? '女' : '未知';
+				return row.gender == 1 ? '男' : row.gender == 0 ? '女' : '未知';
 			},
 			//获取用户列表
-			getUser: function () {
-				let para = {
-					id: this.hotelId
-				};
+			getUser() {
+				// let para = {
+				// 	id: this.hotelId
+				// };
 				this.loading = true;
 				//NProgress.start();
-				getUserList(para).then((res) => {
-					this.users = res.data.users;
+				getUserList().then((res) => {
+				    console.log(res);
+					this.users = res.users;
 					this.loading = false;
-					//NProgress.done();
+					//NProg.
+					// ress.done();
+				}).catch(e=>{
+                    this.loading = false;
 				});
 			}
 		},

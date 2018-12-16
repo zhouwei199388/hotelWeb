@@ -1,13 +1,10 @@
 import Login from './views/Login.vue'
 import NotFound from './views/404.vue'
 import Home from './views/Home.vue'
-import Main from './views/Main.vue'
 import Table from './views/nav1/HotelList.vue'
 import Form from './views/nav1/Form.vue'
-import user from './views/nav1/user.vue'
-import Page4 from './views/nav2/Page4.vue'
-import Page5 from './views/nav2/Page5.vue'
-import Page6 from './views/nav3/Page6.vue'
+import user from './views/nav1/User.vue'
+import Page6 from './views/nav3/Order.vue'
 import echarts from './views/charts/echarts.vue'
 import RoomList from './views/nav1/RoomList'
 
@@ -25,32 +22,44 @@ let routes = [
         hidden: true
     },
 
-    // {
-    //     path: '/main',
-    //     component: Main,
-    //     name:"主界面"
-    // },
     {
         path: '/',
         component: Home,
         name: '酒店管理',
+        leaf: true,//只有一个节点
         iconCls: 'el-icon-message',//图标样式class
+        iconPaths:'images/ic_head.svg',
         children: [
-            {path: '/main', component: Main, name: '主页', hidden: true},
-            {path: '/roomList', component: RoomList, name: '主页', hidden: true},
+            // {path: '/main', component: Main, name: '主页', hidden: true},
             {path: '/table', component: Table, name: '酒店列表'},
-            {path: '/form', component: Form, name: '暂定活动'},
-            {path: '/user', component: user, name: '用户列表'},
+            {path: '/roomList', component: RoomList, name: '房间管理', hidden: true},
+            // {path: '/form', component: Form, name: '暂定活动'},
+            // {path: '/user', component: user, name: '用户列表'},
         ]
     },
-    {
+
+     {
         path: '/',
         component: Home,
-        name: '导航二',
-        iconCls: 'fa fa-id-card-o',
+        name: '酒店管理',
+         leaf: true,//只有一个节点
+        iconCls: 'el-icon-message',//图标样式class
         children: [
-            {path: '/page4', component: Page4, name: '页面4'},
-            {path: '/page5', component: Page5, name: '页面5'}
+            // {path: '/main', component: Main, name: '主页', hidden: true},
+            // {path: '/roomList', component: RoomList, name: '房间管理', hidden: true},
+            // {path: '/table', component: Table, name: '酒店列表'},
+            {path: '/form', component: Form, name: '暂定活动'},
+            // {path: '/user', component: user, name: '用户列表'},
+        ]
+    },
+     {
+        path: '/',
+        component: Home,
+        name: '酒店管理',
+         leaf: true,//只有一个节点
+        iconCls: 'el-icon-message',//图标样式class
+        children: [
+            {path: '/user', component: user, name: '用户列表'},
         ]
     },
     {
@@ -60,13 +69,14 @@ let routes = [
         iconCls: 'fa fa-address-card',
         leaf: true,//只有一个节点
         children: [
-            {path: '/page6', component: Page6, name: '导航三'}
+            {path: '/order', component: Page6, name: '订单管理'}
         ]
     },
     {
         path: '/',
         component: Home,
         name: 'Charts',
+        leaf: true,//只有一个节点
         iconCls: 'fa fa-bar-chart',
         children: [
             {path: '/echarts', component: echarts, name: 'echarts'}

@@ -24,7 +24,7 @@
             </el-table-column>
             <el-table-column prop="name" cell-click="" label="房型" min-width="100" sortable>
             </el-table-column>
-            <el-table-column prop="window" label="窗户" min-width="100">
+            <el-table-column prop="window" label="窗户" min-width="100" :formatter="formatWindow">
             </el-table-column>
             <el-table-column prop="image" label="图片" min-width="100">
             </el-table-column>
@@ -157,9 +157,9 @@
         },
         methods: {
             // //性别显示转换
-            // formatSex: function (row, column) {
-            // 	return row.sex == 1 ? '男' : row.sex == 0 ? '女' : '未知';
-            // },
+            formatWindow: function (row, column) {
+            	return row.window === 0 ? '有窗':'无窗';
+            },
             getParams() {
                 // 取到路由带过来的参数
                 let routerParams = this.$router.params.id;
