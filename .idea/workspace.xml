@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8ad53b1-10c8-4b3a-b610-632d26680874" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/hotel/src/views/nav1/RoomList.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hotel/src/api/AliOSSUtil.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hotel/src/api/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/hotel/src/api/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hotel/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/hotel/src/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hotel/src/views/nav1/HotelList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hotel/src/views/nav1/HotelList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hotel/src/views/nav1/user.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hotel/src/views/nav1/user.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/hotel/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/hotel/package.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,7 +23,7 @@
         <entry file="file://$PROJECT_DIR$/hotel/package.json">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
+              <caret column="1" lean-forward="true" selection-start-column="1" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -33,10 +31,12 @@
       <file leaf-file-name="HotelList.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hotel/src/views/nav1/HotelList.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="27" column="56" selection-start-line="27" selection-start-column="56" selection-end-line="27" selection-end-column="65" />
+            <state relative-caret-position="3120">
+              <caret line="165" column="28" selection-start-line="165" selection-start-column="28" selection-end-line="165" selection-end-column="28" />
               <folding>
                 <element signature="n#el-col#0;n#section#0;n#template#0;n#!!top" />
+                <element signature="n#el-dialog#0;n#section#0;n#template#0;n#!!top" />
+                <element signature="n#el-dialog#1;n#section#0;n#template#0;n#!!top" />
               </folding>
             </state>
           </provider>
@@ -45,8 +45,8 @@
       <file leaf-file-name="user.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hotel/src/views/nav1/user.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="23" column="96" lean-forward="true" selection-start-line="23" selection-start-column="74" selection-end-line="23" selection-end-column="96" />
+            <state relative-caret-position="840">
+              <caret line="43" selection-start-line="43" selection-end-line="43" />
             </state>
           </provider>
         </entry>
@@ -54,8 +54,21 @@
       <file leaf-file-name="RoomList.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hotel/src/views/nav1/RoomList.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1176">
-              <caret line="167" column="43" lean-forward="true" selection-start-line="167" selection-start-column="43" selection-end-line="167" selection-end-column="43" />
+            <state relative-caret-position="298">
+              <caret line="101" column="43" selection-start-line="101" selection-start-column="43" selection-end-line="101" selection-end-column="43" />
+              <folding>
+                <element signature="n#style#0;n#el-pagination#0;n#el-col#1;n#section#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="e#4834#5028#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AliOSSUtil.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/hotel/src/api/AliOSSUtil.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-6">
+              <caret line="46" column="31" lean-forward="true" selection-start-line="46" selection-start-column="31" selection-end-line="46" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -63,17 +76,26 @@
       <file leaf-file-name="api.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hotel/src/api/api.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="28">
-              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+            <state relative-caret-position="283">
+              <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="routes.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Login.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hotel/src/views/Login.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="600">
+              <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routes.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hotel/src/routes.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="84" column="26" selection-start-line="84" selection-start-column="26" selection-end-line="84" selection-end-column="26" />
+            <state relative-caret-position="660">
+              <caret line="33" column="51" selection-start-line="33" selection-start-column="51" selection-end-line="33" selection-end-column="51" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -84,7 +106,7 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hotel/src/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="588">
+            <state relative-caret-position="630">
               <caret line="28" column="21" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="21" />
             </state>
           </provider>
@@ -93,7 +115,7 @@
       <file leaf-file-name="App.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hotel/src/App.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="588">
+            <state relative-caret-position="630">
               <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
             </state>
           </provider>
@@ -111,6 +133,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>getHotel</find>
+      <find>message</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -124,13 +147,14 @@
         <option value="$PROJECT_DIR$/hotel/src/views/Home.vue" />
         <option value="$PROJECT_DIR$/hotel/src/App.vue" />
         <option value="$PROJECT_DIR$/hotel/src/main.js" />
-        <option value="$PROJECT_DIR$/hotel/package.json" />
         <option value="$PROJECT_DIR$/hotel/src/views/nav1/HotelList.vue" />
         <option value="$PROJECT_DIR$/hotel/src/api/api.js" />
         <option value="$PROJECT_DIR$/hotel/src/views/Login.vue" />
         <option value="$PROJECT_DIR$/hotel/src/views/nav1/user.vue" />
         <option value="$PROJECT_DIR$/hotel/src/views/nav1/RoomList.vue" />
         <option value="$PROJECT_DIR$/hotel/src/routes.js" />
+        <option value="$PROJECT_DIR$/hotel/package.json" />
+        <option value="$PROJECT_DIR$/hotel/src/api/AliOSSUtil.js" />
       </list>
     </option>
   </component>
@@ -150,10 +174,10 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="457" />
-    <option name="y" value="12" />
-    <option name="width" value="1460" />
-    <option name="height" value="1000" />
+    <option name="x" value="347" />
+    <option name="y" value="87" />
+    <option name="width" value="1509" />
+    <option name="height" value="995" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -184,15 +208,7 @@
               <item name="hotelWeb" type="462c0819:PsiDirectoryNode" />
               <item name="hotel" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hotelWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hotelWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="hotel" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="nav1" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -212,6 +228,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\as_workspace\HotelResere\hotelWeb\hotel\src\api" />
       <recent name="D:\as_workspace\HotelResere\hotelWeb\hotel\src\views\nav1" />
       <recent name="D:\as_workspace\HotelResere\hotelWeb\hotel\src\views" />
       <recent name="D:\as_workspace\HotelResere\hotelWeb\hotel\src\mock" />
@@ -251,31 +268,40 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42623000" />
+    <option name="totallyTimeSpent" value="47866000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="2064" height="1056" extended-state="7" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.169749" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17028628" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5008834" side_tool="true" weight="0.32884902" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49734983" weight="0.5201794" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49734983" visible="true" weight="0.1472192" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.4991166" visible="true" weight="0.20827389" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.4991166" weight="0.019859813" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="TypeScript" order="7" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.169749" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49734983" weight="0.5201794" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5008834" side_tool="true" weight="0.32884902" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.4991166" visible="true" weight="0.20827389" />
+      <window_info id="Favorites" order="2" side_tool="true" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -290,16 +316,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/hotel/src/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2688">
-          <caret line="96" column="6" lean-forward="true" selection-start-line="96" selection-start-column="6" selection-end-line="96" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hotel/src/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="784">
@@ -334,6 +350,8 @@
           <caret line="165" column="14" lean-forward="true" selection-start-line="165" selection-start-column="14" selection-end-line="165" selection-end-column="14" />
           <folding>
             <element signature="n#el-col#0;n#section#0;n#template#0;n#!!top" />
+            <element signature="n#el-dialog#0;n#section#0;n#template#0;n#!!top" />
+            <element signature="n#el-dialog#1;n#section#0;n#template#0;n#!!top" />
           </folding>
         </state>
       </provider>
@@ -413,6 +431,8 @@
           <caret line="21" column="53" lean-forward="true" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
           <folding>
             <element signature="n#el-col#0;n#section#0;n#template#0;n#!!top" />
+            <element signature="n#el-dialog#0;n#section#0;n#template#0;n#!!top" />
+            <element signature="n#el-dialog#1;n#section#0;n#template#0;n#!!top" />
           </folding>
         </state>
       </provider>
@@ -533,23 +553,16 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hotel/node_modules/vue-router/types/index.d.ts" />
-    <entry file="file://$PROJECT_DIR$/hotel/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hotel/src/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
+        <state relative-caret-position="630">
           <caret line="28" column="21" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hotel/src/App.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
+        <state relative-caret-position="630">
           <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
         </state>
       </provider>
@@ -566,49 +579,69 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hotel/src/views/nav1/HotelList.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="27" column="56" selection-start-line="27" selection-start-column="56" selection-end-line="27" selection-end-column="65" />
+        <state relative-caret-position="3120">
+          <caret line="165" column="28" selection-start-line="165" selection-start-column="28" selection-end-line="165" selection-end-column="28" />
           <folding>
             <element signature="n#el-col#0;n#section#0;n#template#0;n#!!top" />
+            <element signature="n#el-dialog#0;n#section#0;n#template#0;n#!!top" />
+            <element signature="n#el-dialog#1;n#section#0;n#template#0;n#!!top" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hotel/src/views/Login.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1176">
-          <caret line="66" column="30" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hotel/src/api/api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hotel/src/views/nav1/user.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="23" column="96" lean-forward="true" selection-start-line="23" selection-start-column="74" selection-end-line="23" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hotel/src/views/nav1/RoomList.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1176">
-          <caret line="167" column="43" lean-forward="true" selection-start-line="167" selection-start-column="43" selection-end-line="167" selection-end-column="43" />
+        <state relative-caret-position="600">
+          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hotel/src/routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="84" column="26" selection-start-line="84" selection-start-column="26" selection-end-line="84" selection-end-column="26" />
+        <state relative-caret-position="660">
+          <caret line="33" column="51" selection-start-line="33" selection-start-column="51" selection-end-line="33" selection-end-column="51" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hotel/src/api/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hotel/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="1" lean-forward="true" selection-start-column="1" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hotel/src/views/nav1/RoomList.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="101" column="43" selection-start-line="101" selection-start-column="43" selection-end-line="101" selection-end-column="43" />
+          <folding>
+            <element signature="n#style#0;n#el-pagination#0;n#el-col#1;n#section#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#4834#5028#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hotel/src/views/nav1/user.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hotel/src/api/AliOSSUtil.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6">
+          <caret line="46" column="31" lean-forward="true" selection-start-line="46" selection-start-column="31" selection-end-line="46" selection-end-column="51" />
         </state>
       </provider>
     </entry>
