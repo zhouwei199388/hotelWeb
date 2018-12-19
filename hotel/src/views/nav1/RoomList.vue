@@ -56,7 +56,21 @@
                     <el-input v-model="editForm.price"></el-input>
                 </el-form-item>
                 <el-form-item label="图片">
-                    <el-input v-model="editForm.image"></el-input>
+                    <el-upload
+                            class="upload-demo"
+                            ref="upload"
+                            action="https://jsonplaceholder.typicode.com/posts/"
+                            :on-preview="handlePreview"
+                            :on-remove="handleRemove"
+                            :auto-upload="false"
+                            :file-list="urlList"
+                            :on-change="beforeUpload"
+                            list-type="picture">
+                        <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+                        <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器
+                        </el-button>
+                        <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+                    </el-upload>
                 </el-form-item>
                 <el-form-item label="窗户">
                     <el-radio-group v-model="editForm.window">
@@ -80,21 +94,23 @@
                 <el-form-item label="价格">
                     <el-input v-model="addForm.price"></el-input>
                 </el-form-item>
+
                 <el-form-item label="图片">
-                    <el-input v-model="addForm.image"></el-input>
+                    <el-upload
+                            class="upload-demo"
+                            ref="upload"
+                            action="https://jsonplaceholder.typicode.com/posts/"
+                            :on-preview="handlePreview"
+                            :on-remove="handleRemove"
+                            :auto-upload="false"
+                            :on-change="beforeUpload"
+                            list-type="picture">
+                        <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+                        <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器
+                        </el-button>
+                        <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+                    </el-upload>
                 </el-form-item>
-                <el-upload
-                        class="upload-demo"
-                        :on-preview="handlePreview"
-                        :on-remove="handleRemove"
-                        :before-remove="beforeRemove"
-                        multiple
-                        :limit="3"
-                        :on-exceed="handleExceed"
-                        :file-list="fileList">
-                    <el-button size="small" type="primary">点击上传</el-button>
-                    <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-                </el-upload>
                 <el-form-item label="窗户">
                     <el-radio-group v-model="addForm.window">
                         <el-radio :label="0">有窗</el-radio>
@@ -113,17 +129,17 @@
 <script>
     import util from '../../common/js/util'
     //import NProgress from 'nprogress'
+    import AliOSSUtil from '../../api/AliOSSUtil'
     import {
         batchRemoveUser,
-        editUser,
-        getHotelList,
-        addHotelInfo, deleteHotel, updateHotel, getRoomList, addRoom, updateRoom, deleteRoom
+        editUser, getRoomList, addRoom, updateRoom, deleteRoom
     } from '../../api/api';
 
     export default {
         data() {
             return {
-                fileList: [{name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}, {name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}],
+                fileList: [],
+                urlList:[{name:"test",url:"http://hotelimage.oss-cn-shanghai.aliyuncs.com/hotel/9258356017_1215247113.400x400.jpg"}],
                 filters: {
                     name: ''
                 },
@@ -145,6 +161,7 @@
                     id: 0,
                     hotelid: this.hotelId,
                     name: '',
+                    fileList:[],
                     price: 0.00,
                     image: "",
                     window: 0,
@@ -169,21 +186,38 @@
             }
         },
         methods: {
+            submitUpload() {
+                console.log(this.fileList);
+                let fileName = this.fileList[0].name;
+                let file = this.fileList[0].raw;
+                AliOSSUtil.uploadHotelFile("hotel/", file, fileName,
+                    (progress) => {
+                    console.log(progress);
+                        // this.setState({imgPercent: Math.floor(progress * 100)});
+                    },
+                    (resultUrl) => {
+                    console.log(resultUrl);
+                        // this.setState({imageUrl: resultUrl});
+                    });
+            },
             handleRemove(file, fileList) {
                 console.log(file, fileList);
             },
             handlePreview(file) {
                 console.log(file);
             },
-            handleExceed(files, fileList) {
-                this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+            beforeUpload(file, fileList) {
+                this.fileList = fileList;
             },
-            beforeRemove(file, fileList) {
-                return this.$confirm(`确定移除 ${ file.name }？`);
-            },
+            // handleExceed(files, fileList) {
+            //     this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+            // },
+            // beforeRemove(file, fileList) {
+            //     return this.$confirm(`确定移除 ${ file.name }？`);
+            // },
             // //性别显示转换
             formatWindow: function (row, column) {
-            	return row.window === 0 ? '有窗':'无窗';
+                return row.window === 0 ? '有窗' : '无窗';
             },
             getParams() {
                 // 取到路由带过来的参数
@@ -229,7 +263,7 @@
                         this.listLoading = false;
                         console.log(res);
                         //NProgress.done();
-                        if(res.code===0){
+                        if (res.code === 0) {
                             this.$message({
                                 message: '删除成功',
                                 type: 'success'

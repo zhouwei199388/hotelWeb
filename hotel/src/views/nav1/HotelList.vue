@@ -16,12 +16,12 @@
 		</el-col>
 
 		<!--列表-->
-		<el-table @row-click="onItemClick"  :data="hotels" highlight-current-row v-loading="listLoading" border @selection-change="selsChange" style="width: 100%;">
+		<el-table  :data="hotels" @cell-click="onItemClick" highlight-current-row v-loading="listLoading" border @selection-change="selsChange" style="width: 100%;">
 			<el-table-column type="selection" width="55">
 			</el-table-column>
 			<el-table-column type="index" width="60">
 			</el-table-column>
-			<el-table-column prop="hotelname" cell-click="" label="酒店名" min-width="100" sortable>
+			<el-table-column prop="hotelname" label="酒店名" min-width="100" sortable>
 			</el-table-column>
 			<el-table-column prop="hoteladdress" label="地址" min-width="100">
 			</el-table-column>
@@ -85,6 +85,19 @@
 				</el-form-item>
 				<el-form-item label="酒店客服" >
 					<el-input v-model="addForm.phone" ></el-input>
+				</el-form-item>
+				<el-form-item label="图片">
+					<el-upload
+							class="upload-demo"
+							ref="upload"
+							action="https://jsonplaceholder.typicode.com/posts/"
+							:on-preview="handlePreview"
+							:on-remove="handleRemove"
+							:auto-upload="false">
+						<el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+						<el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
+						<div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+					</el-upload>
 				</el-form-item>
 				<el-form-item label="酒店介绍">
 					<el-input type="textarea" v-model="addForm.hoteltext"></el-input>
@@ -156,15 +169,30 @@
 			}
 		},
 		methods: {
+
+
+            submitUpload(param){
+                console.log(param.file);
+            },
+            handleRemove(file, fileList) {
+                console.log(file, fileList);
+            },
+            handlePreview(file) {
+                console.log(file);
+            },
+
 			// //性别显示转换
 			// formatSex: function (row, column) {
 			// 	return row.sex == 1 ? '男' : row.sex == 0 ? '女' : '未知';
 			// },
-			onItemClick(e){
+			onItemClick(row,cloumn){
+			    if(cloumn.property===undefined){
+			        return;
+				}
                 this.$router.push({
 					path: '/roomList',
                     query: {
-                        id: e.id,
+                        id: row.id,
                     }
                 });
     },

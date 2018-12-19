@@ -58,7 +58,6 @@
                 this.logining = false;
               // let { msg, code, admin } = data;
               if (data.code=== 0) {
-
                   this.$message({
                   message: data.header.msg,
                   type: 'error'
