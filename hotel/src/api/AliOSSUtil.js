@@ -11,7 +11,7 @@ export default class AliOSSUtil {
     static region = 'oss-cn-shanghai';
 
     // 上传文件到OSS
-    static uploadFileToOSS(client, file, key, domain, progressCallback, resultCallback) {
+    static uploadFileToOSS(client, file, key, domain, progressCallback, resultCallback,errorCallback) {
         client.multipartUpload(key, file, {
             progress: (progress) => {
                 return (done) => {
@@ -21,18 +21,18 @@ export default class AliOSSUtil {
             }
         }).then(function (res) {
             console.log(res);
+            const  host ="http://hotelimage.oss-cn-shanghai.aliyuncs.com/";
             // 使用自定义的域名
-            // const resultUrl = domain + res["name"];
-
+            const resultUrl = host + res["name"];
             // console.log("resultUrl: " + resultUrl);
-            // resultCallback(encodeURI(resultUrl));
+            resultCallback(encodeURI(resultUrl));
         }).catch(function (err) {
-            console.error(err);
+            errorCallback(err)
         });
     };
 
     // 上传创客文件
-    static uploadHotelFile(bucketName, file, fileOfOss, progressCallback, resultCallback) {
+    static uploadHotelFile(bucketName, file, fileOfOss, progressCallback, resultCallback,errorCallback) {
         if (bucketName === "" || bucketName === null) {
             console.log('bucket不能为空');
             return;
@@ -55,7 +55,7 @@ export default class AliOSSUtil {
 
             const key = res.bukerName + fileOfOss;
             console.log("key: " + key);
-            AliOSSUtil.uploadFileToOSS(ossClient, file, key, "http://maker-oss.delightmom.com/", progressCallback, resultCallback);
+            AliOSSUtil.uploadFileToOSS(ossClient, file, key, "http://maker-oss.delightmom.com/", progressCallback, resultCallback,errorCallback);
         })
 
         // HttpClient.post(HttpClient.buildMakerUrl("admin/course/upload/param"), request,

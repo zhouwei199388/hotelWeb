@@ -26,8 +26,7 @@
             </el-table-column>
             <el-table-column prop="window" label="窗户" min-width="100" :formatter="formatWindow">
             </el-table-column>
-            <el-table-column prop="image" label="图片" min-width="100">
-            </el-table-column>
+
             <el-table-column prop="price" label="价格" min-width="120">
             </el-table-column>
             <el-table-column label="操作" width="150">
@@ -64,11 +63,10 @@
                             :on-remove="handleRemove"
                             :auto-upload="false"
                             :file-list="urlList"
-                            :on-change="beforeUpload"
+                            :on-change="onFileChange"
                             list-type="picture">
                         <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
-                        <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器
-                        </el-button>
+
                         <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
                     </el-upload>
                 </el-form-item>
@@ -103,7 +101,7 @@
                             :on-preview="handlePreview"
                             :on-remove="handleRemove"
                             :auto-upload="false"
-                            :on-change="beforeUpload"
+                            :on-change="onFileChange"
                             list-type="picture">
                         <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
                         <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器
@@ -139,7 +137,10 @@
         data() {
             return {
                 fileList: [],
-                urlList:[{name:"test",url:"http://hotelimage.oss-cn-shanghai.aliyuncs.com/hotel/9258356017_1215247113.400x400.jpg"}],
+                urlList: [{
+                    name: "test",
+                    url: "http://hotelimage.oss-cn-shanghai.aliyuncs.com/hotel/9258356017_1215247113.400x400.jpg"
+                }],
                 filters: {
                     name: ''
                 },
@@ -161,7 +162,7 @@
                     id: 0,
                     hotelid: this.hotelId,
                     name: '',
-                    fileList:[],
+                    roomImages: [],
                     price: 0.00,
                     image: "",
                     window: 0,
@@ -188,26 +189,45 @@
         methods: {
             submitUpload() {
                 console.log(this.fileList);
-                let fileName = this.fileList[0].name;
-                let file = this.fileList[0].raw;
-                AliOSSUtil.uploadHotelFile("hotel/", file, fileName,
-                    (progress) => {
-                    console.log(progress);
-                        // this.setState({imgPercent: Math.floor(progress * 100)});
-                    },
-                    (resultUrl) => {
-                    console.log(resultUrl);
-                        // this.setState({imageUrl: resultUrl});
-                    });
+                for (let i = 0; i < this.fileList.length; i++) {
+                    let file = this.fileList[i];
+                    AliOSSUtil.uploadHotelFile("hotelRoom/", file.raw, file.name,
+                        (progress) => {
+                            console.log(progress);
+                        },
+                        (resultUrl) => {
+                            this.urlList.push({
+                                name: file.name,
+                                url: resultUrl
+                            });
+                        })
+                }
+
             },
             handleRemove(file, fileList) {
-                console.log(file, fileList);
+                console.log("handleRemove");
+                // console.log(file, fileList);
             },
             handlePreview(file) {
-                console.log(file);
+                console.log("handlePreview");
+                // console.log(file);
             },
-            beforeUpload(file, fileList) {
-                this.fileList = fileList;
+            onFileChange(file, fileList) {
+                console.log(file);
+                AliOSSUtil.uploadHotelFile("hotelRoom/", file.raw, file.name,
+                    (progress) => {
+                        console.log(progress);
+                    },
+                    (resultUrl) => {
+                        this.urlList.push({
+                            name: file.name,
+                            url: resultUrl
+                        });
+                        console.log(this.urlList);
+                    },
+                    (err) => {
+                        console.log(err);
+                    })
             },
             // handleExceed(files, fileList) {
             //     this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
@@ -300,6 +320,8 @@
                         this.$confirm('确认提交吗？', '提示', {}).then(() => {
                             this.editLoading = true;
                             //NProgress.start();
+
+                            this.editForm.roomImages = this.getRoomImages();
                             let para = Object.assign({}, this.editForm);
 
                             updateRoom(para).then((res) => {
@@ -370,6 +392,18 @@
 
                 });
             }
+        },
+
+        getRoomImages(){
+            let roomImages=[];
+            const urlList = this.urlList;
+            for (let i=0;i<urlList.length;i++){
+                roomImages[i]={
+                    name:urlList.name,
+                    imageurl:urlList.url,
+                }
+            }
+            return roomImages;
         },
         watch: {
             '$router': 'getParams'
