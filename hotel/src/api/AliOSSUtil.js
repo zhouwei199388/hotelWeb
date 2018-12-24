@@ -24,7 +24,7 @@ export default class AliOSSUtil {
             const  host ="http://hotelimage.oss-cn-shanghai.aliyuncs.com/";
             // 使用自定义的域名
             const resultUrl = host + res["name"];
-            // console.log("resultUrl: " + resultUrl);
+            console.log("resultUrl: " + resultUrl);
             resultCallback(encodeURI(resultUrl));
         }).catch(function (err) {
             errorCallback(err)

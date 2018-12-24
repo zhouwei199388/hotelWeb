@@ -61,6 +61,22 @@
 				<el-form-item label="酒店客服" >
 					<el-input v-model="editForm.phone" ></el-input>
 				</el-form-item>
+				<el-form-item label="图片">
+					<el-upload
+							class="upload-demo"
+							ref="upload"
+							action="https://jsonplaceholder.typicode.com/posts/"
+							:on-preview="handlePreview"
+							:on-remove="handleRemove"
+							:auto-upload="false"
+							:file-list="editForm.hotelImages"
+							:on-change="onEditFileChange"
+							list-type="picture">
+						<el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+
+						<div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+					</el-upload>
+				</el-form-item>
 				<el-form-item label="酒店介绍">
 					<el-input type="textarea" v-model="editForm.hoteltext"></el-input>
 				</el-form-item>
@@ -93,9 +109,13 @@
 							action="https://jsonplaceholder.typicode.com/posts/"
 							:on-preview="handlePreview"
 							:on-remove="handleRemove"
-							:auto-upload="false">
+							:auto-upload="false"
+							:file-list="addForm.hotelImages"
+							:on-change="onAddFileChange"
+							list-type="picture">
 						<el-button slot="trigger" size="small" type="primary">选取文件</el-button>
-						<el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
+						<el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器
+						</el-button>
 						<div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
 					</el-upload>
 				</el-form-item>
@@ -120,6 +140,7 @@
         getHotelList,
         addHotelInfo, deleteHotel, updateHotel
     } from '../../api/api';
+    import AliOSSUtil from '../../api/AliOSSUtil'
 
 	export default {
 		data() {
@@ -145,6 +166,7 @@
 					id: 0,
                     hotelname: '',
                     hoteladdress: "",
+					hotelImages:[],
                     phone: "",
                     facility: '',
                     hoteltext: ''
@@ -161,6 +183,7 @@
 				addForm: {
 					hotelname: '',
 					hoteladdress: "",
+                    hotelImages:[],
 					phone: "",
 					facility: '',
 					hoteltext: ''
@@ -179,6 +202,40 @@
             },
             handlePreview(file) {
                 console.log(file);
+            },
+            onAddFileChange(file, fileList) {
+                console.log(file);
+                AliOSSUtil.uploadHotelFile("hotelRoom/", file.raw, file.name,
+                    (progress) => {
+                        console.log(progress);
+                    },
+                    (resultUrl) => {
+                        this.addForm.hotelImages.push({
+                            name: file.name,
+                            url: resultUrl
+                        });
+                        console.log(this.addForm.hotelImages);
+                    },
+                    (err) => {
+                        console.log(err);
+                    })
+            },
+            onEditFileChange(file, fileList) {
+                console.log(file);
+                AliOSSUtil.uploadHotelFile("hotelRoom/", file.raw, file.name,
+                    (progress) => {
+                        console.log(progress);
+                    },
+                    (resultUrl) => {
+                        this.editForm.hotelImages.push({
+                            name: file.name,
+                            url: resultUrl
+                        });
+                        console.log(this.editForm.hotelImages);
+                    },
+                    (err) => {
+                        console.log(err);
+                    })
             },
 
 			// //性别显示转换
@@ -207,7 +264,7 @@
         getHotelList().then((res) => {
             // this.total = res.data.total;
             console.log(res);
-            this.hotels = res.hotelInfos;
+            this.hotels = res.HotelModels;
             this.listLoading = false;
             //NProgress.done();
         }).catch((e)=>{

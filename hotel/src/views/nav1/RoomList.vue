@@ -62,8 +62,8 @@
                             :on-preview="handlePreview"
                             :on-remove="handleRemove"
                             :auto-upload="false"
-                            :file-list="urlList"
-                            :on-change="onFileChange"
+                            :file-list="editForm.roomImages"
+                            :on-change="onEditFileChange"
                             list-type="picture">
                         <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
 
@@ -92,7 +92,6 @@
                 <el-form-item label="价格">
                     <el-input v-model="addForm.price"></el-input>
                 </el-form-item>
-
                 <el-form-item label="图片">
                     <el-upload
                             class="upload-demo"
@@ -101,7 +100,8 @@
                             :on-preview="handlePreview"
                             :on-remove="handleRemove"
                             :auto-upload="false"
-                            :on-change="onFileChange"
+                            :file-list="addForm.roomImages"
+                            :on-change="onAddFileChange"
                             list-type="picture">
                         <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
                         <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器
@@ -137,10 +137,6 @@
         data() {
             return {
                 fileList: [],
-                urlList: [{
-                    name: "test",
-                    url: "http://hotelimage.oss-cn-shanghai.aliyuncs.com/hotel/9258356017_1215247113.400x400.jpg"
-                }],
                 filters: {
                     name: ''
                 },
@@ -177,7 +173,9 @@
                 },
                 //新增界面数据
                 addForm: {
+                    hotelid: this.hotelId,
                     name: '',
+                    roomImages: [],
                     price: 0.00,
                     image: "",
                     window: 0,
@@ -212,18 +210,35 @@
                 console.log("handlePreview");
                 // console.log(file);
             },
-            onFileChange(file, fileList) {
+            onAddFileChange(file, fileList) {
                 console.log(file);
                 AliOSSUtil.uploadHotelFile("hotelRoom/", file.raw, file.name,
                     (progress) => {
                         console.log(progress);
                     },
                     (resultUrl) => {
-                        this.urlList.push({
+                        this.addForm.roomImages.push({
                             name: file.name,
                             url: resultUrl
                         });
-                        console.log(this.urlList);
+                        console.log(this.addForm.roomImages);
+                    },
+                    (err) => {
+                        console.log(err);
+                    })
+            },
+            onEditFileChange(file, fileList) {
+                console.log(file);
+                AliOSSUtil.uploadHotelFile("hotelRoom/", file.raw, file.name,
+                    (progress) => {
+                        console.log(progress);
+                    },
+                    (resultUrl) => {
+                        this.editForm.roomImages.push({
+                            name: file.name,
+                            url: resultUrl
+                        });
+                        console.log(this.editForm.roomImages);
                     },
                     (err) => {
                         console.log(err);
@@ -308,6 +323,7 @@
                 this.addForm = {
                     hotelid: this.hotelId,
                     name: '',
+                    roomImages: [],
                     price: 0.00,
                     image: "",
                     window: 0,
@@ -321,7 +337,7 @@
                             this.editLoading = true;
                             //NProgress.start();
 
-                            this.editForm.roomImages = this.getRoomImages();
+                            // this.editForm.roomImages = this.getRoomImages();
                             let para = Object.assign({}, this.editForm);
 
                             updateRoom(para).then((res) => {
