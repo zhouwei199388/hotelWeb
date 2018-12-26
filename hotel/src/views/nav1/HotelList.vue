@@ -264,7 +264,7 @@
         getHotelList().then((res) => {
             // this.total = res.data.total;
             console.log(res);
-            this.hotels = res.HotelModels;
+            this.hotels = res.hotelModels;
             this.listLoading = false;
             //NProgress.done();
         }).catch((e)=>{
