@@ -27,6 +27,8 @@
 			</el-table-column>
 			<el-table-column prop="facility" label="设施" min-width="100">
 			</el-table-column>
+			<el-table-column prop="minprice" label="起步价" min-width="100">
+			</el-table-column>
 			<el-table-column prop="phone" label="客服" min-width="120">
 			</el-table-column>
 			<el-table-column prop="hoteltext" label="简介" min-width="180">
@@ -57,6 +59,9 @@
 				</el-form-item>
 				<el-form-item label="酒店配置" >
 					<el-input v-model="editForm.facility" ></el-input>
+				</el-form-item>
+				<el-form-item label="起步价" >
+					<el-input v-model="editForm.minprice" ></el-input>
 				</el-form-item>
 				<el-form-item label="酒店客服" >
 					<el-input v-model="editForm.phone" ></el-input>
@@ -98,6 +103,9 @@
 				</el-form-item>
 				<el-form-item label="酒店配置" >
 					<el-input v-model="addForm.facility" ></el-input>
+				</el-form-item>
+				<el-form-item label="起步价" >
+					<el-input v-model="editForm.minprice" ></el-input>
 				</el-form-item>
 				<el-form-item label="酒店客服" >
 					<el-input v-model="addForm.phone" ></el-input>
@@ -167,6 +175,7 @@
                     hotelname: '',
                     hoteladdress: "",
 					hotelImages:[],
+					minprice:0.00,
                     phone: "",
                     facility: '',
                     hoteltext: ''
@@ -184,6 +193,7 @@
 					hotelname: '',
 					hoteladdress: "",
                     hotelImages:[],
+                    minprice:0.00,
 					phone: "",
 					facility: '',
 					hoteltext: ''
