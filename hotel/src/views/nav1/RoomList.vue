@@ -60,7 +60,7 @@
                             ref="upload"
                             action="https://jsonplaceholder.typicode.com/posts/"
                             :on-preview="handlePreview"
-                            :on-remove="handleRemove"
+                            :on-remove="handleEditRemove"
                             :auto-upload="false"
                             :file-list="editForm.roomImages"
                             :on-change="onEditFileChange"
@@ -98,7 +98,7 @@
                             ref="upload"
                             action="https://jsonplaceholder.typicode.com/posts/"
                             :on-preview="handlePreview"
-                            :on-remove="handleRemove"
+                            :on-remove="handleAddRemove"
                             :auto-upload="false"
                             :file-list="addForm.roomImages"
                             :on-change="onAddFileChange"
@@ -202,9 +202,13 @@
                 }
 
             },
-            handleRemove(file, fileList) {
-                console.log("handleRemove");
-                // console.log(file, fileList);
+            handleAddRemove(file, fileList) {
+                console.log(file, fileList);
+                this.addForm.roomImages = fileList;
+            },
+            handleEditRemove(file, fileList) {
+                console.log(file, fileList);
+                this.editForm.roomImages = fileList;
             },
             handlePreview(file) {
                 console.log("handlePreview");

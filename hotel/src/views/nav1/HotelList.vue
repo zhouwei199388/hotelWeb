@@ -72,7 +72,7 @@
 							ref="upload"
 							action="https://jsonplaceholder.typicode.com/posts/"
 							:on-preview="handlePreview"
-							:on-remove="handleRemove"
+							:on-remove="handleEditRemove"
 							:auto-upload="false"
 							:file-list="editForm.hotelImages"
 							:on-change="onEditFileChange"
@@ -116,7 +116,7 @@
 							ref="upload"
 							action="https://jsonplaceholder.typicode.com/posts/"
 							:on-preview="handlePreview"
-							:on-remove="handleRemove"
+							:on-remove="handleAddRemove"
 							:auto-upload="false"
 							:file-list="addForm.hotelImages"
 							:on-change="onAddFileChange"
@@ -207,8 +207,13 @@
             submitUpload(param){
                 console.log(param.file);
             },
-            handleRemove(file, fileList) {
+            handleAddRemove(file, fileList) {
                 console.log(file, fileList);
+                this.addForm.hotelImages = fileList;
+            },
+            handleEditRemove(file, fileList) {
+                console.log(file, fileList);
+                this.editForm.hotelImages = fileList;
             },
             handlePreview(file) {
                 console.log(file);
