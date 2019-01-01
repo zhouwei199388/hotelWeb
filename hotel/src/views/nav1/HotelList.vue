@@ -4,14 +4,14 @@
 		<el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
 			<el-form :inline="true" :model="filters">
 				<el-form-item>
-					<el-input v-model="filters.name" placeholder="姓名"></el-input>
-				</el-form-item>
-				<el-form-item>
-					<el-button type="primary" v-on:click="getHotel">查询</el-button>
-				</el-form-item>
-				<el-form-item>
-					<el-button type="primary" @click="handleAdd">新增</el-button>
-				</el-form-item>
+			<el-input v-model="filters.name" placeholder="姓名"></el-input>
+		</el-form-item>
+			<el-form-item>
+				<el-button type="primary" v-on:click="getHotel">查询</el-button>
+			</el-form-item>
+			<el-form-item>
+				<el-button type="primary" @click="handleAdd">新增</el-button>
+			</el-form-item>
 			</el-form>
 		</el-col>
 
@@ -31,6 +31,7 @@
 			</el-table-column>
 			<el-table-column prop="phone" label="客服" min-width="120">
 			</el-table-column>
+
 			<el-table-column prop="hoteltext" label="简介" min-width="180">
 			</el-table-column>
 			<el-table-column label="操作" width="150">
@@ -56,6 +57,15 @@
 				</el-form-item>
 				<el-form-item label="酒店地址" >
 					<el-input v-model="editForm.hoteladdress" ></el-input>
+				</el-form-item>
+				<el-form-item label="地址名称" >
+					<el-input v-model="editForm.addressname" ></el-input>
+				</el-form-item>
+				<el-form-item label="经度" >
+					<el-input v-model="editForm.longitude" ></el-input>
+				</el-form-item>
+				<el-form-item label="纬度" >
+					<el-input v-model="editForm.latitude" ></el-input>
 				</el-form-item>
 				<el-form-item label="酒店配置" >
 					<el-input v-model="editForm.facility" ></el-input>
@@ -100,6 +110,15 @@
 				</el-form-item>
 				<el-form-item label="酒店地址" >
 					<el-input v-model="addForm.hoteladdress" ></el-input>
+				</el-form-item>
+				<el-form-item label="地址名称" >
+					<el-input v-model="editForm.addressname" ></el-input>
+				</el-form-item>
+				<el-form-item label="经度" >
+					<el-input v-model="editForm.longitude" ></el-input>
+				</el-form-item>
+				<el-form-item label="纬度" >
+					<el-input v-model="editForm.latitude" ></el-input>
 				</el-form-item>
 				<el-form-item label="酒店配置" >
 					<el-input v-model="addForm.facility" ></el-input>
@@ -174,6 +193,9 @@
 					id: 0,
                     hotelname: '',
                     hoteladdress: "",
+                    addressname:"",
+                    latitude:0.00,
+                    longitude:0.00,
 					hotelImages:[],
 					minprice:0.00,
                     phone: "",
@@ -192,6 +214,9 @@
 				addForm: {
 					hotelname: '',
 					hoteladdress: "",
+                    addressname:"",
+                    latitude:0.00,
+                    longitude:0.00,
                     hotelImages:[],
                     minprice:0.00,
 					phone: "",
