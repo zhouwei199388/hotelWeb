@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // let base = '';
-let base = 'http://101.132.195.191';
+let base = 'https://zwwjj1314.com/api';
 
 export const requestLogin = params => {
     return axios.post(`${base}/admin/login`, params).then(res => res.data);
