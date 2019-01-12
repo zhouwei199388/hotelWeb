@@ -41,6 +41,9 @@ export const deleteRoom = params => {
 export const getUserList = params => {
     return axios.get(`${base}/user/getAllUser`).then(res=>res.data);
 };
+export const getOrderList = params => {
+    return axios.get(`${base}/order/getAllOrder`).then(res=>res.data);
+};
 
 export const uploadAuth = params => {
     return axios.post(`${base}/OSS/stsAuthorization?keyName=`+params).then(res=>res.data);
