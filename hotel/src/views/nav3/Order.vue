@@ -14,22 +14,25 @@
 
 		<!--列表-->
 		<template>
-			<el-table :data="users" highlight-current-row v-loading="loading" border style="width: 100%;">
+			<el-table :data="orders" highlight-current-row v-loading="loading" border style="width: 100%;">
 				<el-table-column type="index" width="60">
 				</el-table-column>
-				<el-table-column prop="nickname" label="姓名" min-width="100" sortable>
+				<el-table-column prop="ordernumber" label="订单号" min-width="100" sortable>
+				</el-table-column>
+				<el-table-column prop="people" label="预订用户" min-width="100" >
 				</el-table-column>
 				<el-table-column prop="phone" label="手机号" min-width="100" >
 				</el-table-column>
-				<el-table-column prop="gender" label="性别" min-width="100" :formatter="formatSex" >
+				<el-table-column prop="price" label="支付金额" min-width="100" >
 				</el-table-column>
-				<el-table-column prop="level" label="等级" min-width="100" sortable>
+				<el-table-column prop="startdate" label="入住时间" min-width="100" >
 				</el-table-column>
-				<!--<el-table-column prop="birth" label="生日" width="120" >-->
-				<!--</el-table-column>-->
+				<el-table-column prop="enddate" label="离店时间" min-width="100" >
+				</el-table-column>
+				<el-table-column prop="status" label="订单状态" min-width="100" :formatter="status">
+				</el-table-column>
 			</el-table>
 		</template>
-
 	</section>
 </template>
 <script>
@@ -42,26 +45,23 @@
 					name: ''
 				},
 				loading: false,
-				order: [],
+				orders: [],
 
 			}
 		},
 		methods: {
-
             //性别显示转换
-			formatSex: function (row, column) {
-				return row.gender == 1 ? '男' : row.gender == 0 ? '女' : '未知';
-			},
-			//获取用户列表
+            status: function (row, column) {
+                const status = ["待支付","待入住","已入住"];
+                return status[row.status];
+            },
+			//获取订单列表
 			getUser() {
-				// let para = {
-				// 	id: this.hotelId
-				// };
 				this.loading = true;
 				//NProgress.start();
 				getOrderList().then((res) => {
 				    console.log(res);
-					// this.users = res.users;
+					this.orders = res.orders;
 					this.loading = false;
 					//NProg.
 					// ress.done();
@@ -70,7 +70,6 @@
 				});
 			}
 		},
-
 		mounted() {
 			this.getUser();
 		}
