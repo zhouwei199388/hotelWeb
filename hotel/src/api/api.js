@@ -52,7 +52,6 @@ export const uploadAuth = params => {
 
 
 
-
 // export const getUserListPage = params => {
 //     return axios.get(`${base}/user/listpage`, {params: params});
 // };

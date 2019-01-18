@@ -19,9 +19,9 @@
 				</el-table-column>
 				<el-table-column prop="ordernumber" label="订单号" min-width="100" sortable>
 				</el-table-column>
-				<el-table-column prop="people" label="预订用户" min-width="100" >
+				<el-table-column prop="user.nickname" label="预订用户" min-width="100" >
 				</el-table-column>
-				<el-table-column prop="phone" label="手机号" min-width="100" >
+				<el-table-column prop="user.phone" label="手机号" min-width="100" >
 				</el-table-column>
 				<el-table-column prop="price" label="支付金额" min-width="100" >
 				</el-table-column>
