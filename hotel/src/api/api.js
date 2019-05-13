@@ -35,6 +35,10 @@ export const updateRoom = params => {
     return axios.post(`${base}/room/update`, params).then(res => res.data);
 };
 
+export const setRoomNumber = params => {
+    return axios.post(`${base}/order/setRoomNum`, params).then(res => res.data);
+};
+
 export const deleteRoom = params => {
     return axios.post(`${base}/room/delete?roomId=`+params).then(res=>res.data);
 };
